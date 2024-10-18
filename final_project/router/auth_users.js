@@ -79,6 +79,13 @@ regd_users.put('/auth/review/:isbn', (req, res) => {
   return res.status(200).send('Review was ' + (wasReviewUpdated ? 'updated' : 'saved') + ' successfully')
 })
 
+// Delete a book review using isbn and current logged in user
+regd_users.delete('/auth/review/:isbn', (req, res) => {
+  const currentUsername = req.session.authorization.username
+  delete books[req.params.isbn].reviews[currentUsername]
+  return res.status(200).send('Review was deleted successfully')
+})
+
 module.exports.authenticated = regd_users
 module.exports.isValid = isValid
 module.exports.users = users
