@@ -12,25 +12,25 @@ public_users.post('/register', (req, res) => {
 // Get the book list available in the shop
 public_users.get('/', function (req, res) {
   //Write your code here
-  return res.status(300).json(books)
+  return res.status(200).json(books)
 })
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
   //Write your code here
-  return res.status(300).json(books[req.params.isbn])
+  return res.status(200).json(books[req.params.isbn])
 })
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
   //Write your code here
-  return res.status(300).json(Object.values(books).find(({ author }) => author === req.params.author))
+  return res.status(200).json(Object.values(books).find(({ author }) => author === req.params.author))
 })
 
 // Get all books based on title
 public_users.get('/title/:title', function (req, res) {
   //Write your code here
-  return res.status(300).json({ message: 'Yet to be implemented' })
+  return res.status(200).json(Object.values(books).find(({ title }) => title === req.params.title))
 })
 
 //  Get book review
