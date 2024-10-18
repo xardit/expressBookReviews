@@ -24,7 +24,7 @@ public_users.get('/isbn/:isbn', function (req, res) {
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
   //Write your code here
-  return res.status(300).json({ message: 'Yet to be implemented' })
+  return res.status(300).json(Object.values(books).find(({ author }) => author === req.params.author))
 })
 
 // Get all books based on title
