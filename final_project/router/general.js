@@ -26,25 +26,46 @@ public_users.post('/register', (req, res) => {
 // Get the book list available in the shop
 public_users.get('/', function (req, res) {
   //Write your code here
-  return res.status(200).json(books)
+  let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(books)
+    }, 6000)
+  })
+
+  return myPromise.then((resolvedBooks) => res.status(200).json(resolvedBooks))
 })
 
 // Get book details based on ISBN
 public_users.get('/isbn/:isbn', function (req, res) {
   //Write your code here
-  return res.status(200).json(books[req.params.isbn])
+  let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(books[req.params.isbn])
+    }, 6000)
+  })
+  return myPromise.then((resolvedBook) => res.status(200).json(resolvedBook))
 })
 
 // Get book details based on author
 public_users.get('/author/:author', function (req, res) {
-  //Write your code here
-  return res.status(200).json(Object.values(books).find(({ author }) => author === req.params.author))
+  let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Object.values(books).find(({ author }) => author === req.params.author))
+    }, 6000)
+  })
+
+  return myPromise.then((resolvedBook) => res.status(200).json(resolvedBook))
 })
 
-// Get all books based on title
+// Get books details based on title
 public_users.get('/title/:title', function (req, res) {
-  //Write your code here
-  return res.status(200).json(Object.values(books).find(({ title }) => title === req.params.title))
+  let myPromise = new Promise((resolve, reject) => {
+    setTimeout(() => {
+      resolve(Object.values(books).find(({ title }) => title === req.params.title))
+    }, 6000)
+  })
+
+  return myPromise.then((resolvedBook) => res.status(200).json(resolvedBook))
 })
 
 //  Get book review
