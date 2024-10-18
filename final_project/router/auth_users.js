@@ -73,7 +73,10 @@ regd_users.post('/login', (req, res) => {
 // Add a book review
 regd_users.put('/auth/review/:isbn', (req, res) => {
   //Write your code here
-  return res.status(300).json({ message: 'Yet to be implemented' })
+  const currentUsername = req.session.authorization.username
+  let wasReviewUpdated = typeof books[req.params.isbn].reviews[currentUsername] !== 'undefined'
+  books[req.params.isbn].reviews[currentUsername] = req.body.myreview
+  return res.status(200).send('Review was ' + (wasReviewUpdated ? 'updated' : 'saved') + ' successfully')
 })
 
 module.exports.authenticated = regd_users
